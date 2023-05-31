@@ -1,5 +1,6 @@
 package com.zkflzl.myinit.config;
 
+import com.zkflzl.myinit.common.BaseResponse;
 import com.zkflzl.myinit.common.ErrorCode;
 import com.zkflzl.myinit.common.ResultUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -17,8 +18,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class WebExceptionAdvice {
 
     @ExceptionHandler(RuntimeException.class)
-    public ResultUtils handleRuntimeException(RuntimeException e) {
+    public BaseResponse handleRuntimeException(RuntimeException e) {
         log.error(e.toString(), e);
-        return ResultUtils.error(ErrorCode.SYSTEM_ERROR,"服务器异常" );
+        return ResultUtils.error(ErrorCode.SYSTEM_ERROR);
     }
 }

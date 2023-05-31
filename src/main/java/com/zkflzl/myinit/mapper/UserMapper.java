@@ -1,7 +1,7 @@
 package com.zkflzl.myinit.mapper;
 
-import com.zkflzl.myinit.model.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.zkflzl.myinit.model.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

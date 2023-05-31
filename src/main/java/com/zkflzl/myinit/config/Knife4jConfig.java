@@ -18,7 +18,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  */
 @Configuration
 @EnableSwagger2
-@Profile({"dev", "test"})
 public class Knife4jConfig {
 
     @Bean
@@ -31,7 +30,7 @@ public class Knife4jConfig {
                         .build())
                 .select()
                 // 指定 Controller 扫描包路径
-                .apis(RequestHandlerSelectors.basePackage("com.yupi.springbootinit.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.zkflzl.myinit.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }

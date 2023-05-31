@@ -1,23 +1,50 @@
 package com.zkflzl.myinit.controller;
 
+import com.zkflzl.myinit.common.BaseResponse;
+import com.zkflzl.myinit.common.ErrorCode;
+import com.zkflzl.myinit.common.ResultUtils;
+import com.zkflzl.myinit.exception.BusinessException;
+import com.zkflzl.myinit.model.dto.user.UserRegisterRequest;
 import com.zkflzl.myinit.service.UserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
-
-@RestController
-@RequestMapping("/user")
 @Slf4j
+@RestController
+@Api(tags = "用户管理")
+@RequestMapping("/user")
 public class UserController {
 
     @Resource
     private UserService userService;
 
-
-
+    /**
+     * 用户注册
+     *
+     * @param userRegisterRequest
+     * @return
+     */
+    @ApiOperation("注册")
+    @PostMapping("/register")
+    public BaseResponse<Long> userRegister(@RequestBody UserRegisterRequest userRegisterRequest) {
+        if (userRegisterRequest == null) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        String phone = userRegisterRequest.getPhone();
+        String userPassword = userRegisterRequest.getUserPassword();
+        String checkPassword = userRegisterRequest.getCheckPassword();
+        if (StringUtils.isAnyBlank(phone, userPassword, checkPassword)) {
+            return null;
+        }
+        long result = userService.userRegister(phone, userPassword, checkPassword);
+        return ResultUtils.success(result);
+    }
 }
+
+
+

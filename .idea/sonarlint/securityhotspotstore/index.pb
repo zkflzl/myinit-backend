@@ -3,8 +3,6 @@ L
 .idea/mybatisx/templates.xml,7\a\7a8e46cfbd72943a56408813f04fd21d4a0ad1f6
 i
 9src/test/java/com/zkflzl/myinit/MainApplicationTests.java,d\d\dd68a779617d5fbcfddf92c32744df8257f92749
-7
-pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 U
 %.mvn/wrapper/maven-wrapper.properties,3\2\32e074f71d16c1e88ac02aa83592ca6ad1fd98a8
 A

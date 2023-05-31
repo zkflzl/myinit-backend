@@ -5,8 +5,6 @@ i
 9src/test/java/com/zkflzl/myinit/MainApplicationTests.java,d\d\dd68a779617d5fbcfddf92c32744df8257f92749
 U
 %.mvn/wrapper/maven-wrapper.properties,3\2\32e074f71d16c1e88ac02aa83592ca6ad1fd98a8
-7
-pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 A
 sql/user_info.sql,3\a\3a81eddd593b7dbd873b8824dd43665adbd08341
 8

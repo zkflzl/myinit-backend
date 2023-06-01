@@ -37,7 +37,7 @@ public class User implements Serializable {
     /**
      * 昵称
      */
-    private String username;
+    private String userName;
 
     /**
      * 头像
@@ -52,7 +52,7 @@ public class User implements Serializable {
     /**
      * 权限
      */
-    private String userrole;
+    private String userRole;
 
     /**
      * 性别
@@ -62,18 +62,18 @@ public class User implements Serializable {
     /**
      * 创建时间
      */
-    private Date createtime;
+    private Date createTime;
 
     /**
      * 更新时间
      */
-    private Date updatetime;
+    private Date updateTime;
 
     /**
      * 是否删除(0-未删, 1-已删)
      */
     @TableLogic
-    private Integer isdelete;
+    private Integer isDelete;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
@@ -94,14 +94,14 @@ public class User implements Serializable {
             && (this.getPhone() == null ? other.getPhone() == null : this.getPhone().equals(other.getPhone()))
             && (this.getPassword() == null ? other.getPassword() == null : this.getPassword().equals(other.getPassword()))
             && (this.getAccount() == null ? other.getAccount() == null : this.getAccount().equals(other.getAccount()))
-            && (this.getUsername() == null ? other.getUsername() == null : this.getUsername().equals(other.getUsername()))
+            && (this.getUserName() == null ? other.getUserName() == null : this.getUserName().equals(other.getUserName()))
             && (this.getIcon() == null ? other.getIcon() == null : this.getIcon().equals(other.getIcon()))
             && (this.getIntroduction() == null ? other.getIntroduction() == null : this.getIntroduction().equals(other.getIntroduction()))
-            && (this.getUserrole() == null ? other.getUserrole() == null : this.getUserrole().equals(other.getUserrole()))
+            && (this.getUserRole() == null ? other.getUserRole() == null : this.getUserRole().equals(other.getUserRole()))
             && (this.getGender() == null ? other.getGender() == null : this.getGender().equals(other.getGender()))
-            && (this.getCreatetime() == null ? other.getCreatetime() == null : this.getCreatetime().equals(other.getCreatetime()))
-            && (this.getUpdatetime() == null ? other.getUpdatetime() == null : this.getUpdatetime().equals(other.getUpdatetime()))
-            && (this.getIsdelete() == null ? other.getIsdelete() == null : this.getIsdelete().equals(other.getIsdelete()));
+            && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
+            && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()))
+            && (this.getIsDelete() == null ? other.getIsDelete() == null : this.getIsDelete().equals(other.getIsDelete()));
     }
 
     @Override
@@ -112,14 +112,14 @@ public class User implements Serializable {
         result = prime * result + ((getPhone() == null) ? 0 : getPhone().hashCode());
         result = prime * result + ((getPassword() == null) ? 0 : getPassword().hashCode());
         result = prime * result + ((getAccount() == null) ? 0 : getAccount().hashCode());
-        result = prime * result + ((getUsername() == null) ? 0 : getUsername().hashCode());
+        result = prime * result + ((getUserName() == null) ? 0 : getUserName().hashCode());
         result = prime * result + ((getIcon() == null) ? 0 : getIcon().hashCode());
         result = prime * result + ((getIntroduction() == null) ? 0 : getIntroduction().hashCode());
-        result = prime * result + ((getUserrole() == null) ? 0 : getUserrole().hashCode());
+        result = prime * result + ((getUserRole() == null) ? 0 : getUserRole().hashCode());
         result = prime * result + ((getGender() == null) ? 0 : getGender().hashCode());
-        result = prime * result + ((getCreatetime() == null) ? 0 : getCreatetime().hashCode());
-        result = prime * result + ((getUpdatetime() == null) ? 0 : getUpdatetime().hashCode());
-        result = prime * result + ((getIsdelete() == null) ? 0 : getIsdelete().hashCode());
+        result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
+        result = prime * result + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
+        result = prime * result + ((getIsDelete() == null) ? 0 : getIsDelete().hashCode());
         return result;
     }
 
@@ -133,14 +133,14 @@ public class User implements Serializable {
         sb.append(", phone=").append(phone);
         sb.append(", password=").append(password);
         sb.append(", account=").append(account);
-        sb.append(", username=").append(username);
+        sb.append(", username=").append(userName);
         sb.append(", icon=").append(icon);
         sb.append(", introduction=").append(introduction);
-        sb.append(", userrole=").append(userrole);
+        sb.append(", userrole=").append(userRole);
         sb.append(", gender=").append(gender);
-        sb.append(", createtime=").append(createtime);
-        sb.append(", updatetime=").append(updatetime);
-        sb.append(", isdelete=").append(isdelete);
+        sb.append(", createtime=").append(createTime);
+        sb.append(", updatetime=").append(updateTime);
+        sb.append(", isdelete=").append(isDelete);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

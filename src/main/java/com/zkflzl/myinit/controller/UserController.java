@@ -1,5 +1,6 @@
 package com.zkflzl.myinit.controller;
 
+import com.zkflzl.myinit.annotation.MyLog;
 import com.zkflzl.myinit.common.BaseResponse;
 import com.zkflzl.myinit.common.ErrorCode;
 import com.zkflzl.myinit.common.ResultUtils;
@@ -55,6 +56,7 @@ public class UserController {
      * @param request
      * @return
      */
+    @MyLog
     @ApiOperation("登录")
     @PostMapping("/login")
     public BaseResponse<LoginUserVO> userLogin(@RequestBody UserLoginRequest userLoginRequest, HttpServletRequest request) {

@@ -15,7 +15,7 @@
             <option name="ignoreFieldSuffix" value="" />
             <option name="ignoreTablePrefix" value="" />
             <option name="ignoreTableSuffix" value="" />
-            <option name="moduleName" value="springbootinit" />
+            <option name="moduleName" value="backed" />
             <option name="modulePath" value="$PROJECT_DIR$" />
             <option name="moduleUIInfoList">
               <list>
@@ -69,16 +69,18 @@
             <option name="tableUIInfoList">
               <list>
                 <TableUIInfo>
-                  <option name="className" value="UserInfo" />
-                  <option name="tableName" value="user_info" />
+                  <option name="className" value="Post" />
+                  <option name="tableName" value="post" />
                 </TableUIInfo>
               </list>
             </option>
             <option name="templatesName" value="mybatis-plus3" />
+            <option name="useActualColumnAnnotationInject" value="true" />
+            <option name="useActualColumns" value="true" />
             <option name="useLombokPlugin" value="true" />
           </GenerateConfig>
         </option>
-        <option name="moduleName" value="springbootinit" />
+        <option name="moduleName" value="backed" />
         <option name="projectPath" value="$PROJECT_DIR$" />
         <option name="templateName" value="mybatis-plus3" />
       </TemplateContext>

@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zkflzl.myinit.common.ErrorCode;
 import com.zkflzl.myinit.exception.BusinessException;
 import com.zkflzl.myinit.model.entity.User;
+import com.zkflzl.myinit.model.enums.UserRoleEnum;
 import com.zkflzl.myinit.model.vo.LoginUserVO;
 import com.zkflzl.myinit.service.UserService;
 import com.zkflzl.myinit.mapper.UserMapper;
@@ -129,6 +130,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return loginUserVO;
     }
 
+    @Override
+    public boolean isAdmin(HttpServletRequest request) {
+        // 仅管理员可查询
+        Object userObj = request.getSession().getAttribute(USER_LOGIN_STATE);
+        User user = (User) userObj;
+        return user != null && UserRoleEnum.ADMIN.getValue().equals(user.getUserRole());
+    }
 }
 
 

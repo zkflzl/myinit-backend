@@ -8,6 +8,7 @@ import com.zkflzl.myinit.common.ResultUtils;
 import com.zkflzl.myinit.exception.BusinessException;
 import com.zkflzl.myinit.exception.ThrowUtils;
 import com.zkflzl.myinit.model.dto.post.PostAddRequest;
+import com.zkflzl.myinit.model.dto.post.PostDeleteRequest;
 import com.zkflzl.myinit.model.entity.Post;
 import com.zkflzl.myinit.model.entity.User;
 import com.zkflzl.myinit.service.PostService;
@@ -26,7 +27,7 @@ import java.util.List;
  * @author <a href="https://github.com/zkflzl">程序员zk</a>
  */
 @Service
-public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements PostService{
+public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements PostService {
 
     @Resource
     private PostService postService;
@@ -73,6 +74,21 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements Po
         if (StringUtils.isNotBlank(content) && content.length() > 8192) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "内容过长");
         }
+    }
+
+    @Override
+    public BaseResponse<Boolean> deletePost(PostDeleteRequest postDeleteRequest, HttpServletRequest request) {
+        User user = userService.getLoginUser(request);
+        long id = postDeleteRequest.getId();
+        // 判断是否存在
+        Post oldPost = postService.getById(id);
+        ThrowUtils.throwIf(oldPost == null, ErrorCode.NOT_FOUND_ERROR);
+        // 仅本人或管理员可删除
+        if (!oldPost.getUserId().equals(user.getId()) && !userService.isAdmin(request)) {
+            throw new BusinessException(ErrorCode.NO_AUTH_ERROR);
+        }
+        boolean b = postService.removeById(id);
+        return ResultUtils.success(b);
     }
 }
 

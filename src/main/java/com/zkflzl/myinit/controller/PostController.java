@@ -3,9 +3,15 @@ package com.zkflzl.myinit.controller;
 import com.google.gson.Gson;
 import com.zkflzl.myinit.common.BaseResponse;
 import com.zkflzl.myinit.common.ErrorCode;
+import com.zkflzl.myinit.common.ResultUtils;
 import com.zkflzl.myinit.exception.BusinessException;
+import com.zkflzl.myinit.exception.ThrowUtils;
 import com.zkflzl.myinit.model.dto.post.PostAddRequest;
+import com.zkflzl.myinit.model.dto.post.PostDeleteRequest;
+import com.zkflzl.myinit.model.entity.Post;
+import com.zkflzl.myinit.model.entity.User;
 import com.zkflzl.myinit.service.PostService;
+import com.zkflzl.myinit.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -32,6 +38,9 @@ public class PostController {
     @Resource
     private PostService postService;
 
+    @Resource
+    private UserService userService;
+
 
     private final static Gson GSON = new Gson();
 
@@ -54,6 +63,15 @@ public class PostController {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
         return postService.addPost(postAddRequest,request);
+    }
+
+    @ApiOperation("删除帖子帖子")
+    @PostMapping("/delete")
+    public BaseResponse<Boolean> deletePost(@RequestBody PostDeleteRequest postDeleteRequest, HttpServletRequest request) {
+        if (postDeleteRequest == null || postDeleteRequest.getId() <= 0) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        return postService.deletePost(postDeleteRequest,request);
     }
 
 }

@@ -67,4 +67,6 @@ create table if not exists post
 
 
 
-- 
+1. 帖子新增√
+2. 帖子删除√
+3. 帖子分页查看（自己）√

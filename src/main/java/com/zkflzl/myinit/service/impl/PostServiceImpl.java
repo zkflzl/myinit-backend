@@ -1,5 +1,7 @@
 package com.zkflzl.myinit.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.google.gson.Gson;
 import com.zkflzl.myinit.common.BaseResponse;
@@ -9,6 +11,7 @@ import com.zkflzl.myinit.exception.BusinessException;
 import com.zkflzl.myinit.exception.ThrowUtils;
 import com.zkflzl.myinit.model.dto.post.PostAddRequest;
 import com.zkflzl.myinit.model.dto.post.PostDeleteRequest;
+import com.zkflzl.myinit.model.dto.post.PostSelfGetRequest;
 import com.zkflzl.myinit.model.entity.Post;
 import com.zkflzl.myinit.model.entity.User;
 import com.zkflzl.myinit.service.PostService;
@@ -89,6 +92,24 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements Po
         }
         boolean b = postService.removeById(id);
         return ResultUtils.success(b);
+    }
+
+    @Override
+    public BaseResponse<Page<Post>> getSelfPost(PostSelfGetRequest postSelfGetRequest, HttpServletRequest request) {
+        User user = userService.getLoginUser(request);
+
+        Integer pageName = postSelfGetRequest.getPageName();
+        Integer pageSize = postSelfGetRequest.getPageSize();
+
+        // 限制爬虫
+        ThrowUtils.throwIf(pageSize > 20, ErrorCode.PARAMS_ERROR);
+
+        QueryWrapper<Post> postQueryWrapper = new QueryWrapper<>();
+        postQueryWrapper.eq("userId", user.getId());
+
+        Page<Post> postPage = postService.page(new Page<>(pageName, pageSize), postQueryWrapper);
+
+        return ResultUtils.success(postPage);
     }
 }
 

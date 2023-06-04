@@ -5,6 +5,7 @@ import com.zkflzl.myinit.common.BaseResponse;
 import com.zkflzl.myinit.model.dto.post.PostAddRequest;
 import com.zkflzl.myinit.model.dto.post.PostDeleteRequest;
 import com.zkflzl.myinit.model.dto.post.PostSelfGetRequest;
+import com.zkflzl.myinit.model.dto.post.PostUpdateRequest;
 import com.zkflzl.myinit.model.entity.Post;
 import com.baomidou.mybatisplus.extension.service.IService;
 import javafx.geometry.Pos;
@@ -21,4 +22,14 @@ public interface PostService extends IService<Post> {
     BaseResponse<Boolean> deletePost(PostDeleteRequest postDeleteRequest, HttpServletRequest request);
 
     BaseResponse<Page<Post>> getSelfPost(PostSelfGetRequest postSelfGetRequest, HttpServletRequest request);
+
+    BaseResponse<Boolean> updatePost(PostUpdateRequest postUpdateRequest, HttpServletRequest request);
+
+    /**
+     * 校验
+     *
+     * @param post
+     * @param add
+     */
+    void validPost(Post post, boolean add);
 }

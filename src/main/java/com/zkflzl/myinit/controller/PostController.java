@@ -1,19 +1,21 @@
 package com.zkflzl.myinit.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.google.gson.Gson;
 import com.zkflzl.myinit.common.BaseResponse;
 import com.zkflzl.myinit.common.ErrorCode;
+import com.zkflzl.myinit.common.ResultUtils;
 import com.zkflzl.myinit.exception.BusinessException;
+import com.zkflzl.myinit.exception.ThrowUtils;
 import com.zkflzl.myinit.model.dto.post.PostAddRequest;
 import com.zkflzl.myinit.model.dto.post.PostDeleteRequest;
 import com.zkflzl.myinit.model.dto.post.PostSelfGetRequest;
+import com.zkflzl.myinit.model.dto.post.PostUpdateRequest;
 import com.zkflzl.myinit.model.entity.Post;
 import com.zkflzl.myinit.service.PostService;
-import com.zkflzl.myinit.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +23,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+
 
 /**
  * 帖子接口
@@ -74,6 +78,21 @@ public class PostController {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
         return postService.getSelfPost(postSelfGetRequest,request);
+    }
+
+    /**
+     * 更新（自己/管理员）
+     *
+     * @param postUpdateRequest
+     * @return
+     */
+    @ApiOperation("更新帖子（自己/管理员）")
+    @PostMapping("/update")
+    public BaseResponse<Boolean> updatePost(@RequestBody PostUpdateRequest postUpdateRequest, HttpServletRequest request) {
+        if (postUpdateRequest == null || postUpdateRequest.getId() <= 0) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        return postService.updatePost(postUpdateRequest,request);
     }
 
 }

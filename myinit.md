@@ -44,7 +44,8 @@ SET FOREIGN_KEY_CHECKS = 1;
 ### 帖子开发
 
 - ​	用户帖子包含？
-  1.  帖子id、用户id、标题、内容、标签、点赞、收藏、转发			评论（关联评论表，此处不添加字段信息)
+  
+  ​	帖子id、用户id、标题、内容、标签、点赞、收藏、转发、逻辑删除、创建时间、更新时间			评论（关联评论表，此处不添加字段信息)
 
 ```sql
 -- 帖子表
@@ -60,8 +61,7 @@ create table if not exists post
     forward    int      default 0                 not null comment '转发数量',
     createTime datetime default CURRENT_TIMESTAMP not null comment '创建时间',
     updateTime datetime default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '更新时间',
-    isDelete   tinyint  default 0                 not null comment '是否删除',
-    index idx_userId (userId)
+    isDelete   tinyint  default 0                 not null comment '是否删除'
 ) comment '帖子' collate = utf8mb4_unicode_ci;
 ```
 
@@ -71,3 +71,28 @@ create table if not exists post
 2. 帖子删除√
 3. 帖子分页查看（自己）√
 4. 帖子更新（自己或管理员）√
+
+### 帖子点赞、收藏功能完善
+
+- 帖子点赞表包含？
+
+  id、帖子id、用户id、是否点赞、是否收藏、创建时间、更新时间、是否删除
+
+```sql
+-- 帖子点赞、收藏表
+create table if not exists post_msg
+(
+    id         bigint auto_increment comment 'id' primary key comment '主键',
+    userId     bigint                             not null comment '创建用户 id',
+    postId     bigint                             not null comment '帖子 id',
+    isThumb    tinyint(1)	default 0			  not null comment '是否点赞(0否 1是)',
+    isFavour   tinyint(1)	default 0			  not null comment '是否收藏(0否 1是)',
+    createTime datetime default CURRENT_TIMESTAMP not null comment '创建时间',
+    updateTime datetime default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '更新时间'
+    isDelete   tinyint  default 0                 not null comment '是否删除'
+) comment '帖子点赞、收藏' collate = utf8mb4_unicode_ci;
+```
+
+
+
+1. 帖子点赞、取消点赞√			加锁加事务

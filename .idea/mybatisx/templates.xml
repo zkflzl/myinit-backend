@@ -69,8 +69,8 @@
             <option name="tableUIInfoList">
               <list>
                 <TableUIInfo>
-                  <option name="className" value="Post" />
-                  <option name="tableName" value="post" />
+                  <option name="className" value="PostMsg" />
+                  <option name="tableName" value="post_msg" />
                 </TableUIInfo>
               </list>
             </option>

@@ -11,7 +11,7 @@
  Target Server Version : 50719 (5.7.19)
  File Encoding         : 65001
 
- Date: 05/06/2023 09:02:08
+ Date: 05/06/2023 10:00:32
 */
 
 SET NAMES utf8mb4;
@@ -26,7 +26,7 @@ CREATE TABLE `post_msg`  (
   `userId` bigint(20) NOT NULL COMMENT '创建用户 id',
   `postId` bigint(20) NOT NULL COMMENT '帖子 id',
   `isThumb` tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否点赞(0否 1是)',
-  `isfavour` tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否点赞(0否 1是)',
+  `isFavour` tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否点赞(0否 1是)',
   `createTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `updateTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE

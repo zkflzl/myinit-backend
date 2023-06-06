@@ -37,7 +37,7 @@ public class PostMsgController {
      * @return {@link BaseResponse}<{@link Long}>
      */
     @ApiOperation("帖子点赞/取消点赞")
-    @PostMapping("/add/thumb")
+    @PostMapping("/update/thumb")
     public BaseResponse<Long> updateThumb(@RequestParam Long postId, HttpServletRequest request) {
         if (postId <= 0) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
@@ -58,7 +58,7 @@ public class PostMsgController {
      * @return {@link BaseResponse}<{@link Long}>
      */
     @ApiOperation("帖子收藏/取消收藏")
-    @PostMapping("/add/favour")
+    @PostMapping("/update/favour")
     public BaseResponse<Long> updateFavour(@RequestParam Long postId, HttpServletRequest request) {
         if (postId <= 0) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);

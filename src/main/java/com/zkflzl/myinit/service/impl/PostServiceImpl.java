@@ -1,6 +1,8 @@
 package com.zkflzl.myinit.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.extension.conditions.query.QueryChainWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.google.gson.Gson;
@@ -18,6 +20,7 @@ import com.zkflzl.myinit.model.entity.Post;
 import com.zkflzl.myinit.model.entity.User;
 import com.zkflzl.myinit.service.PostService;
 import com.zkflzl.myinit.service.UserService;
+import javafx.geometry.Pos;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -137,6 +140,31 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements Po
         }
         if (StringUtils.isNotBlank(content) && content.length() > 8192) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "内容过长");
+        }
+    }
+
+    @Override
+    public BaseResponse<Long> addForward(Long postId, HttpServletRequest request) {
+
+        Long userId = userService.getLoginUser(request).getId();
+
+        synchronized (String.valueOf(userId).intern()) {
+            UpdateWrapper<Post> updateWrapper = new UpdateWrapper<>();
+            updateWrapper.eq("id", postId)
+                    .setSql("forward = forward + 1");
+            boolean result = postService.update(updateWrapper);
+
+            // 失败抛异常
+            ThrowUtils.throwIf(!result, ErrorCode.SYSTEM_ERROR);
+
+            QueryWrapper<Post> postQueryWrapper = new QueryWrapper<>();
+            postQueryWrapper
+                    .select("forward")
+                    .eq("id", postId);
+
+            Long forward = Long.valueOf(postService.getOne(postQueryWrapper).getForward());
+
+            return ResultUtils.success(forward);
         }
     }
 }

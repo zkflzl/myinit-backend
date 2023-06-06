@@ -95,4 +95,4 @@ create table if not exists post_msg
 
 
 
-1. 帖子点赞、取消点赞√			加锁加事务
+1. 帖子点赞/收藏、取消点赞/收藏√			加锁加事务

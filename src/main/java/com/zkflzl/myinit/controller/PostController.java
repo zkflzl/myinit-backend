@@ -1,22 +1,22 @@
 package com.zkflzl.myinit.controller;
 
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zkflzl.myinit.common.BaseResponse;
 import com.zkflzl.myinit.common.ErrorCode;
+import com.zkflzl.myinit.common.ResultUtils;
 import com.zkflzl.myinit.exception.BusinessException;
-import com.zkflzl.myinit.model.dto.post.PostAddRequest;
-import com.zkflzl.myinit.model.dto.post.PostDeleteRequest;
-import com.zkflzl.myinit.model.dto.post.PostSelfGetRequest;
-import com.zkflzl.myinit.model.dto.post.PostUpdateRequest;
+import com.zkflzl.myinit.exception.ThrowUtils;
+import com.zkflzl.myinit.model.dto.post.*;
 import com.zkflzl.myinit.model.entity.Post;
+import com.zkflzl.myinit.model.entity.User;
 import com.zkflzl.myinit.service.PostService;
+import com.zkflzl.myinit.service.UserService;
+import com.zkflzl.myinit.utils.RegexUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -56,7 +56,7 @@ public class PostController {
         if (postAddRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        return postService.addPost(postAddRequest,request);
+        return postService.addPost(postAddRequest, request);
     }
 
     /**
@@ -72,7 +72,7 @@ public class PostController {
         if (postDeleteRequest == null || postDeleteRequest.getId() <= 0) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        return postService.deletePost(postDeleteRequest,request);
+        return postService.deletePost(postDeleteRequest, request);
     }
 
     /**
@@ -88,7 +88,7 @@ public class PostController {
         if (postSelfGetRequest == null || postSelfGetRequest.getPageName() < 0 || postSelfGetRequest.getPageSize() <= 0) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        return postService.getSelfPost(postSelfGetRequest,request);
+        return postService.getSelfPost(postSelfGetRequest, request);
     }
 
     /**
@@ -104,7 +104,15 @@ public class PostController {
         if (postUpdateRequest == null || postUpdateRequest.getId() <= 0) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        return postService.updatePost(postUpdateRequest,request);
+        return postService.updatePost(postUpdateRequest, request);
     }
 
+    @ApiOperation("帖子转发")
+    @PostMapping("/add/forward")
+    public BaseResponse<Long> updateFavour(@RequestParam Long postId, HttpServletRequest request) {
+        if (postId <= 0) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        return postService.addForward(postId, request);
+    }
 }

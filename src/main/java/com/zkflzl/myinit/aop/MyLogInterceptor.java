@@ -30,6 +30,11 @@ public class MyLogInterceptor {
     public void myLogInterceptor() {
     }
 
+    /**
+     * 日志打印
+     *
+     * @param joinPoint 连接点
+     */
     @Before("myLogInterceptor()")
     public void beforeMyLogInterceptor(JoinPoint joinPoint) {
         ServletRequestAttributes requestAttributes =

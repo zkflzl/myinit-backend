@@ -1,13 +1,10 @@
 package com.zkflzl.myinit.controller;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zkflzl.myinit.common.BaseResponse;
 import com.zkflzl.myinit.common.ErrorCode;
 import com.zkflzl.myinit.exception.BusinessException;
-import com.zkflzl.myinit.model.dto.post.*;
-import com.zkflzl.myinit.model.entity.Post;
+import com.zkflzl.myinit.model.dto.post.PostMsgUpdateRequest;
 import com.zkflzl.myinit.service.PostMsgService;
-import com.zkflzl.myinit.service.PostService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -37,9 +34,9 @@ public class PostMsgController {
     /**
      * 帖子点赞、取消点赞
      *
-     * @param postMsgUpdateRequest
-     * @param request
-     * @return
+     * @param postMsgUpdateRequest 帖子信息更新请求
+     * @param request              请求
+     * @return {@link BaseResponse}<{@link Long}>
      * @author zk
      */
     @ApiOperation("帖子点赞/取消点赞")

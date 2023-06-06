@@ -1,7 +1,7 @@
 package com.zkflzl.myinit.mapper;
 
-import com.zkflzl.myinit.model.entity.PostMsg;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.zkflzl.myinit.model.entity.PostMsg;
 
 /**
  * @author <a href="https://github.com/zkflzl">程序员zk</a>

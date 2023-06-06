@@ -1,10 +1,8 @@
 package com.zkflzl.myinit.model.dto.post;
 
-import io.swagger.models.auth.In;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * 创建请求

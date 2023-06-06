@@ -20,8 +20,6 @@ d
 w
 Gsrc/main/java/com/zkflzl/myinit/model/dto/user/UserRegisterRequest.java,2\7\2735e7323ec3e0a8dd92b6a5e38c6d7d01adf1da
 f
-6src/main/java/com/zkflzl/myinit/mapper/PostMapper.java,3\b\3bf2d1c695817d4e4b1bbaa7fb7df44d9a2fc346
-f
 6src/main/java/com/zkflzl/myinit/config/CorsConfig.java,5\3\538d86ec37dbd637b283e1f0b41ad9fa7d1df4a2
 A
 sql/user_info.sql,3\a\3a81eddd593b7dbd873b8824dd43665adbd08341
@@ -29,8 +27,6 @@ n
 >src/main/java/com/zkflzl/myinit/config/WebExceptionAdvice.java,a\e\ae354d29b87015763a426bc2eb5e548f087967b8
 m
 =src/main/java/com/zkflzl/myinit/config/MyBatisPlusConfig.java,a\9\a9c674d2eadaf2e75175b347214bd424303d4a60
-i
-9src/main/java/com/zkflzl/myinit/config/Knife4jConfig.java,6\2\628aaee42dac6c4285a9cb6eea237befefc81e95
 <
 sql/post.sql,2\5\250c2f4ae22b96708cb190e92d690bde3e9e5a9a
 7
@@ -41,19 +37,23 @@ m
 =src/main/java/com/zkflzl/myinit/model/enums/UserRoleEnum.java,5\3\53e1b81142d21f08b8e6f45646d5f9d9e2d0e6f8
 p
 @src/main/java/com/zkflzl/myinit/exception/BusinessException.java,5\3\53eb300e8798c618e62f3017fcbbdbc3925f54a1
-f
-6src/main/java/com/zkflzl/myinit/model/entity/Post.java,9\c\9c839aaf66d9fbbe21f575777791f21ef383bb8e
-v
-Fsrc/main/java/com/zkflzl/myinit/model/dto/post/PostSelfGetRequest.java,8\4\849b7b7df0305a763746fbf403d4fb3b90d43972
 u
 Esrc/main/java/com/zkflzl/myinit/model/dto/post/PostDeleteRequest.java,0\2\021bbe803abd5f15aa7bfebfd2f5ff52c1a44591
 e
 5src/main/java/com/zkflzl/myinit/common/ErrorCode.java,a\c\ac8d1ea8e5a56024b6b34ef7a88b6683559df44c
-h
-8src/main/java/com/zkflzl/myinit/service/PostService.java,d\d\dd23cba859774699800427b511fed61cd5931510
 i
 9src/main/java/com/zkflzl/myinit/annotation/AuthCheck.java,c\5\c5c585c05b84bce6cecc3bb61496d9b71603366f
 n
 >src/main/java/com/zkflzl/myinit/controller/UserController.java,b\d\bdeeab7b54e6eea8c93f6295a9665b24a3c2fad1
 u
 Esrc/main/java/com/zkflzl/myinit/model/dto/post/PostUpdateRequest.java,3\7\37b20df8d51c205bccfedddce938ca13cecadbe3
+h
+8src/main/java/com/zkflzl/myinit/service/UserService.java,e\7\e78aebb30a0d01e0f2c8f8ccec99e8c91ea6ac35
+@
+sql/post_msg.sql,e\6\e60bf131129f031e87b56c3ad0fc24c90b021ac9
+L
+.idea/mybatisx/templates.xml,7\a\7a8e46cfbd72943a56408813f04fd21d4a0ad1f6
+9
+	myinit.md,c\7\c731df84e4312bd915e64bdb2a3076d57291a687
+r
+Bsrc/main/java/com/zkflzl/myinit/model/dto/post/PostAddRequest.java,7\a\7a2e552ddb845bbe064aeef27aa39b94efcf70a7

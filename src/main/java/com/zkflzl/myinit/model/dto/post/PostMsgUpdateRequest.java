@@ -17,5 +17,11 @@ public class PostMsgUpdateRequest implements Serializable {
      */
     private Long postId;
 
+    /**
+     * 类型（1、点赞  2、收藏）
+     */
+    private Integer type;
+
+
     private static final long serialVersionUID = 1L;
 }

@@ -11,14 +11,11 @@
         <module name="backed" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="1.8">
-      <module name="springbootinit" target="1.8" />
-    </bytecodeTargetLevel>
+    <bytecodeTargetLevel target="1.8" />
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="backed" options="-parameters" />
-      <module name="springbootinit" options="-parameters" />
     </option>
   </component>
 </project>

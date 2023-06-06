@@ -7,12 +7,6 @@ j
 :src/main/java/com/zkflzl/myinit/constant/UserConstant.java,6\b\6bb1889fdc24b9757d2f69c9173a2e19e3d7dd7b
 i
 9src/main/java/com/zkflzl/myinit/model/vo/LoginUserVO.java,7\1\71559e5233b6c157ee71168e0fc948128afaaa7b
-h
-8src/main/java/com/zkflzl/myinit/aop/AuthInterceptor.java,3\8\38d5fcddf80c79ed5641d4ab80ee6e90122fb7e0
-i
-9src/main/java/com/zkflzl/myinit/aop/MyLogInterceptor.java,5\4\54fa988202e65c3e7eb31931f379c9ce0b9a6704
-e
-5src/main/java/com/zkflzl/myinit/annotation/MyLog.java,5\e\5ec1e86a7695f47c0601b305ec6ca098c7b31128
 t
 Dsrc/main/java/com/zkflzl/myinit/model/dto/user/UserLoginRequest.java,7\f\7f5c21b30882bec9d4d061e67003f32db33d6e4b
 d
@@ -41,8 +35,6 @@ u
 Esrc/main/java/com/zkflzl/myinit/model/dto/post/PostDeleteRequest.java,0\2\021bbe803abd5f15aa7bfebfd2f5ff52c1a44591
 e
 5src/main/java/com/zkflzl/myinit/common/ErrorCode.java,a\c\ac8d1ea8e5a56024b6b34ef7a88b6683559df44c
-i
-9src/main/java/com/zkflzl/myinit/annotation/AuthCheck.java,c\5\c5c585c05b84bce6cecc3bb61496d9b71603366f
 n
 >src/main/java/com/zkflzl/myinit/controller/UserController.java,b\d\bdeeab7b54e6eea8c93f6295a9665b24a3c2fad1
 u
@@ -57,3 +49,19 @@ L
 	myinit.md,c\7\c731df84e4312bd915e64bdb2a3076d57291a687
 r
 Bsrc/main/java/com/zkflzl/myinit/model/dto/post/PostAddRequest.java,7\a\7a2e552ddb845bbe064aeef27aa39b94efcf70a7
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+i
+9src/main/java/com/zkflzl/myinit/config/Knife4jConfig.java,6\2\628aaee42dac6c4285a9cb6eea237befefc81e95
+v
+Fsrc/main/java/com/zkflzl/myinit/model/dto/post/PostSelfGetRequest.java,8\4\849b7b7df0305a763746fbf403d4fb3b90d43972
+f
+6src/main/java/com/zkflzl/myinit/model/entity/User.java,e\e\ee50f8d9590a05d18a20aa0aefcad585ad77787a
+f
+6src/main/java/com/zkflzl/myinit/model/entity/Post.java,9\c\9c839aaf66d9fbbe21f575777791f21ef383bb8e
+h
+8src/main/java/com/zkflzl/myinit/service/PostService.java,d\d\dd23cba859774699800427b511fed61cd5931510
+q
+Asrc/main/java/com/zkflzl/myinit/service/impl/PostServiceImpl.java,c\b\cb518deb58f6e54afefd24edc4ef91258f4d0b3d
+i
+9src/main/java/com/zkflzl/myinit/annotation/AuthCheck.java,c\5\c5c585c05b84bce6cecc3bb61496d9b71603366f

@@ -34,15 +34,13 @@ public class PostMsgServiceImpl extends ServiceImpl<PostMsgMapper, PostMsg> impl
     @Resource
     private PostService postService;
 
+
     /**
+     * 更新拇指味精
      *
-     * 帖子点赞、取消点赞
-     *
-     * 封装了事务、加锁
-     *
-     * @param postMsgUpdateRequest
-     * @param request
-     * @return
+     * @param postMsgUpdateRequest 味精后更新请求
+     * @param request              请求
+     * @return {@link BaseResponse}<{@link Long}>
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -52,14 +50,21 @@ public class PostMsgServiceImpl extends ServiceImpl<PostMsgMapper, PostMsg> impl
 
         User loginUser = userService.getLoginUser(request);
 
+        String tempName = "";
+
+        Integer type = postMsgUpdateRequest.getType();
+
+        tempName = type == 1 ? "thumbNum" : "favourNum";
+
+
         // 判断是否存在
         Post post = postService.getById(postId);
         // 帖子是否存在
         ThrowUtils.throwIf(post == null, ErrorCode.NOT_FOUND_ERROR);
 
-        // 是否已帖子收藏
+        // 获取用户id
         long userId = loginUser.getId();
-        // 每个用户串行帖子收藏
+        // 每个用户串行帖子点赞/收藏
         // 锁必须要包裹住事务方法
         synchronized (String.valueOf(userId).intern()) {
 
@@ -87,21 +92,27 @@ public class PostMsgServiceImpl extends ServiceImpl<PostMsgMapper, PostMsg> impl
                 ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
             }
 
+            // 是否点赞/收藏
+            int tempNum = type == 1 ? postMsg.getIsThumb() : postMsg.getIsFavour();
 
-            // 已点赞
-            if (postMsg.getIsThumb() == 1) {
+            // 已点赞/收藏
+            if (tempNum == 1) {
 
-                postMsg.setIsThumb(0);
+                if (type == 1) {
+                    postMsg.setIsThumb(0);
+                } else {
+                    postMsg.setIsFavour(0);
+                }
 
                 boolean result = this.update(postMsg, queryWrapper);
 
                 // 更新成功
                 if (result) {
-                    // 帖子收藏数 - 1
+                    // 帖子点赞/收藏数 - 1
                     result = postService.update()
                             .eq("id", postId)
-                            .gt("thumbNum", 0)
-                            .setSql("thumbNum = thumbNum - 1")
+                            .gt(tempName, 0)
+                            .setSql(tempName + "=" + tempName + "-1")
                             .update();
                 }
                 if (!result) {
@@ -109,21 +120,25 @@ public class PostMsgServiceImpl extends ServiceImpl<PostMsgMapper, PostMsg> impl
                     throw new BusinessException(ErrorCode.SYSTEM_ERROR);
                 }
 
-                // 完成取消点赞
+                // 完成取消点赞/收藏
                 return ResultUtils.success(0L);
 
             } else {
-                // 未点赞
-                postMsg.setIsThumb(1);
+                // 未点赞/收藏
+                if (type == 1) {
+                    postMsg.setIsThumb(1);
+                } else {
+                    postMsg.setIsFavour(1);
+                }
 
                 boolean result = this.update(postMsg, queryWrapper);
 
                 // 更新成功
                 if (result) {
-                    // 帖子收藏数 + 1
+                    // 帖子点赞/收藏数 + 1
                     result = postService.update()
                             .eq("id", postId)
-                            .setSql("thumbNum = thumbNum + 1")
+                            .setSql(tempName + "=" + tempName + "+1")
                             .update();
                 }
                 // 更新失败
@@ -132,7 +147,7 @@ public class PostMsgServiceImpl extends ServiceImpl<PostMsgMapper, PostMsg> impl
                     throw new BusinessException(ErrorCode.SYSTEM_ERROR);
                 }
 
-                // 完成点赞
+                // 完成点赞/收藏
                 return ResultUtils.success(1L);
             }
         }

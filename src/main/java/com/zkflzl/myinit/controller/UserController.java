@@ -31,8 +31,8 @@ public class UserController {
     /**
      * 用户注册
      *
-     * @param userRegisterRequest
-     * @return
+     * @param userRegisterRequest 用户注册请求
+     * @return {@link BaseResponse}<{@link Long}>
      */
     @ApiOperation("注册")
     @PostMapping("/register")
@@ -49,12 +49,13 @@ public class UserController {
         long result = userService.userRegister(phone, userPassword, checkPassword);
         return ResultUtils.success(result);
     }
+
     /**
      * 用户登录
      *
-     * @param userLoginRequest
-     * @param request
-     * @return
+     * @param userLoginRequest 用户登录请求
+     * @param request          请求
+     * @return {@link BaseResponse}<{@link LoginUserVO}>
      */
     @MyLog
     @ApiOperation("登录")
@@ -75,8 +76,8 @@ public class UserController {
     /**
      * 获取当前登录用户
      *
-     * @param request
-     * @return
+     * @param request 请求
+     * @return {@link BaseResponse}<{@link Object}>
      */
     @ApiOperation("获取当前登录用户消息")
     @GetMapping("/get/login")

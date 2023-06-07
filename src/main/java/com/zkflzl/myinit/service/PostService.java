@@ -31,6 +31,4 @@ public interface PostService extends IService<Post> {
      * @param add
      */
     void validPost(Post post, boolean add);
-
-    BaseResponse<Long> addForward(Long postId, HttpServletRequest request);
 }

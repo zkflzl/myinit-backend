@@ -106,13 +106,4 @@ public class PostController {
         }
         return postService.updatePost(postUpdateRequest, request);
     }
-
-    @ApiOperation("帖子转发")
-    @PostMapping("/add/forward")
-    public BaseResponse<Long> updateFavour(@RequestParam Long postId, HttpServletRequest request) {
-        if (postId <= 0) {
-            throw new BusinessException(ErrorCode.PARAMS_ERROR);
-        }
-        return postService.addForward(postId, request);
-    }
 }

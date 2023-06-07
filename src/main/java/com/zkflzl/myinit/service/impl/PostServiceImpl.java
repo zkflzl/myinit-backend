@@ -142,31 +142,6 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements Po
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "内容过长");
         }
     }
-
-    @Override
-    public BaseResponse<Long> addForward(Long postId, HttpServletRequest request) {
-
-        Long userId = userService.getLoginUser(request).getId();
-
-        synchronized (String.valueOf(userId).intern()) {
-            UpdateWrapper<Post> updateWrapper = new UpdateWrapper<>();
-            updateWrapper.eq("id", postId)
-                    .setSql("forward = forward + 1");
-            boolean result = postService.update(updateWrapper);
-
-            // 失败抛异常
-            ThrowUtils.throwIf(!result, ErrorCode.SYSTEM_ERROR);
-
-            QueryWrapper<Post> postQueryWrapper = new QueryWrapper<>();
-            postQueryWrapper
-                    .select("forward")
-                    .eq("id", postId);
-
-            Long forward = Long.valueOf(postService.getOne(postQueryWrapper).getForward());
-
-            return ResultUtils.success(forward);
-        }
-    }
 }
 
 

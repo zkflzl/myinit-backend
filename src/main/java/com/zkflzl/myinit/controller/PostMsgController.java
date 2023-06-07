@@ -71,6 +71,13 @@ public class PostMsgController {
         return postMsgService.updatePostMsg(postMsgUpdateRequest, request);
     }
 
+    /**
+     * 添加帖子转发
+     *
+     * @param postId  post id
+     * @param request 请求
+     * @return {@link BaseResponse}<{@link Long}>
+     */
     @ApiOperation("帖子转发")
     @PostMapping("/add/forward")
     public BaseResponse<Long> addForward(@RequestParam Long postId, HttpServletRequest request) {

@@ -13,4 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 public interface PostMsgService extends IService<PostMsg> {
 
     BaseResponse<Long> updatePostMsg(PostMsgUpdateRequest postMsgUpdateRequest, HttpServletRequest request);
+
+    BaseResponse<Long> addForward(Long postId, HttpServletRequest request);
 }

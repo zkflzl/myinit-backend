@@ -70,4 +70,13 @@ public class PostMsgController {
 
         return postMsgService.updatePostMsg(postMsgUpdateRequest, request);
     }
+
+    @ApiOperation("帖子转发")
+    @PostMapping("/add/forward")
+    public BaseResponse<Long> addForward(@RequestParam Long postId, HttpServletRequest request) {
+        if (postId <= 0) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        return postMsgService.addForward(postId, request);
+    }
 }

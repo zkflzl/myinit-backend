@@ -1,6 +1,7 @@
 package com.zkflzl.myinit.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zkflzl.myinit.common.BaseResponse;
 import com.zkflzl.myinit.common.ErrorCode;
@@ -150,6 +151,31 @@ public class PostMsgServiceImpl extends ServiceImpl<PostMsgMapper, PostMsg> impl
                 // 完成点赞/收藏
                 return ResultUtils.success(1L);
             }
+        }
+    }
+
+    @Override
+    public BaseResponse<Long> addForward(Long postId, HttpServletRequest request) {
+
+        Long userId = userService.getLoginUser(request).getId();
+
+        synchronized (String.valueOf(userId).intern()) {
+            UpdateWrapper<Post> updateWrapper = new UpdateWrapper<>();
+            updateWrapper.eq("id", postId)
+                    .setSql("forward = forward + 1");
+            boolean result = postService.update(updateWrapper);
+
+            // 失败抛异常
+            ThrowUtils.throwIf(!result, ErrorCode.SYSTEM_ERROR);
+
+            QueryWrapper<Post> postQueryWrapper = new QueryWrapper<>();
+            postQueryWrapper
+                    .select("forward")
+                    .eq("id", postId);
+
+            Long forward = Long.valueOf(postService.getOne(postQueryWrapper).getForward());
+
+            return ResultUtils.success(forward);
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.zkflzl.myinit.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.zkflzl.myinit.common.BaseResponse;
 import com.zkflzl.myinit.model.entity.User;
 import com.zkflzl.myinit.model.vo.LoginUserVO;
 
@@ -49,4 +50,5 @@ public interface UserService extends IService<User> {
 
     boolean isAdmin(HttpServletRequest request);
 
+    BaseResponse<Object> userLogout(HttpServletRequest request);
 }

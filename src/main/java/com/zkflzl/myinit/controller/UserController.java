@@ -80,7 +80,7 @@ public class UserController {
      * @return {@link BaseResponse}<{@link Object}>
      */
     @ApiOperation("获取当前登录用户消息")
-    @GetMapping("/get/login")
+    @GetMapping("/current")
     public BaseResponse<Object> getLoginUser(HttpServletRequest request) {
         User user = userService.getLoginUser(request);
         return ResultUtils.success(userService.getLoginUserVO(user));

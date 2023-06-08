@@ -2,8 +2,11 @@ package com.zkflzl.myinit.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.zkflzl.myinit.common.BaseResponse;
 import com.zkflzl.myinit.common.ErrorCode;
+import com.zkflzl.myinit.common.ResultUtils;
 import com.zkflzl.myinit.exception.BusinessException;
+import com.zkflzl.myinit.exception.ThrowUtils;
 import com.zkflzl.myinit.mapper.UserMapper;
 import com.zkflzl.myinit.model.entity.User;
 import com.zkflzl.myinit.model.enums.UserRoleEnum;
@@ -16,17 +19,20 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import static com.zkflzl.myinit.constant.UserConstant.USER_LOGIN_STATE;
 
 /**
- *
  * @author <a href="https://github.com/zkflzl">程序员zk</a>
  */
 @Service
 @Slf4j
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
+
+    @Resource
+    private UserService userService;
 
     private final String SALT = "ZKFLZL";
     private final String MARKED = "INIT_";
@@ -137,6 +143,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         User user = (User) userObj;
         return user != null && UserRoleEnum.ADMIN.getValue().equals(user.getUserRole());
     }
+
+    @Override
+    public BaseResponse<Object> userLogout(Long userId, HttpServletRequest request) {
+        boolean removed = userService.removeById(userId);
+        return ResultUtils.success(removed);
+    }
+
 }
 
 

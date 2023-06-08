@@ -5,6 +5,7 @@ import com.zkflzl.myinit.common.BaseResponse;
 import com.zkflzl.myinit.common.ErrorCode;
 import com.zkflzl.myinit.common.ResultUtils;
 import com.zkflzl.myinit.exception.BusinessException;
+import com.zkflzl.myinit.exception.ThrowUtils;
 import com.zkflzl.myinit.model.dto.user.UserLoginRequest;
 import com.zkflzl.myinit.model.dto.user.UserRegisterRequest;
 import com.zkflzl.myinit.model.entity.User;
@@ -61,9 +62,9 @@ public class UserController {
     @ApiOperation("登录")
     @PostMapping("/login")
     public BaseResponse<LoginUserVO> userLogin(@RequestBody UserLoginRequest userLoginRequest, HttpServletRequest request) {
-        if (userLoginRequest == null) {
-            throw new BusinessException(ErrorCode.PARAMS_ERROR);
-        }
+
+        ThrowUtils.throwIf(userLoginRequest == null,ErrorCode.PARAMS_ERROR);
+
         String phone = userLoginRequest.getPhone();
         String userPassword = userLoginRequest.getUserPassword();
         if (StringUtils.isAnyBlank(phone, userPassword)) {
@@ -84,6 +85,21 @@ public class UserController {
     public BaseResponse<Object> getLoginUser(HttpServletRequest request) {
         User user = userService.getLoginUser(request);
         return ResultUtils.success(userService.getLoginUserVO(user));
+    }
+
+    /**
+     * 退出登录
+     *
+     * @param request 请求
+     * @return {@link BaseResponse}<{@link Object}>
+     */
+    @ApiOperation("退出登录")
+    @GetMapping("/logout")
+    public BaseResponse<Object> userLogout(@RequestParam Long userId, HttpServletRequest request) {
+        if (userId == null || userId <= 0) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        return userService.userLogout(userId, request);
     }
 }
 

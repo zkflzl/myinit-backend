@@ -12,6 +12,10 @@ import java.util.Date;
  **/
 @Data
 public class LoginUserVO implements Serializable {
+    /**
+     * id
+     */
+    private Long id;
 
     /**
      * 昵称

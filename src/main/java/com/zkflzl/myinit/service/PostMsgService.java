@@ -12,7 +12,21 @@ import javax.servlet.http.HttpServletRequest;
  */
 public interface PostMsgService extends IService<PostMsg> {
 
+    /**
+     * 更新帖子信息
+     *
+     * @param postMsgUpdateRequest 更新帖子信息参数
+     * @param request              请求
+     * @return {@link BaseResponse}<{@link Long}>
+     */
     BaseResponse<Long> updatePostMsg(PostMsgUpdateRequest postMsgUpdateRequest, HttpServletRequest request);
 
+    /**
+     * 帖子转发数量增加
+     *
+     * @param postId  帖子id
+     * @param request 请求
+     * @return {@link BaseResponse}<{@link Long}>
+     */
     BaseResponse<Long> addForward(Long postId, HttpServletRequest request);
 }

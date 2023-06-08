@@ -5,8 +5,6 @@ w
 Gsrc/main/java/com/zkflzl/myinit/model/dto/user/UserRegisterRequest.java,2\7\2735e7323ec3e0a8dd92b6a5e38c6d7d01adf1da
 f
 6src/main/java/com/zkflzl/myinit/config/CorsConfig.java,5\3\538d86ec37dbd637b283e1f0b41ad9fa7d1df4a2
-A
-sql/user_info.sql,3\a\3a81eddd593b7dbd873b8824dd43665adbd08341
 n
 >src/main/java/com/zkflzl/myinit/config/WebExceptionAdvice.java,a\e\ae354d29b87015763a426bc2eb5e548f087967b8
 m

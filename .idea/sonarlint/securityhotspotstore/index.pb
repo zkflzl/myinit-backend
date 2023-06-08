@@ -1,10 +1,6 @@
 
 j
 :src/main/java/com/zkflzl/myinit/constant/UserConstant.java,6\b\6bb1889fdc24b9757d2f69c9173a2e19e3d7dd7b
-i
-9src/main/java/com/zkflzl/myinit/model/vo/LoginUserVO.java,7\1\71559e5233b6c157ee71168e0fc948128afaaa7b
-t
-Dsrc/main/java/com/zkflzl/myinit/model/dto/user/UserLoginRequest.java,7\f\7f5c21b30882bec9d4d061e67003f32db33d6e4b
 w
 Gsrc/main/java/com/zkflzl/myinit/model/dto/user/UserRegisterRequest.java,2\7\2735e7323ec3e0a8dd92b6a5e38c6d7d01adf1da
 f
@@ -29,8 +25,6 @@ e
 5src/main/java/com/zkflzl/myinit/common/ErrorCode.java,a\c\ac8d1ea8e5a56024b6b34ef7a88b6683559df44c
 u
 Esrc/main/java/com/zkflzl/myinit/model/dto/post/PostUpdateRequest.java,3\7\37b20df8d51c205bccfedddce938ca13cecadbe3
-h
-8src/main/java/com/zkflzl/myinit/service/UserService.java,e\7\e78aebb30a0d01e0f2c8f8ccec99e8c91ea6ac35
 @
 sql/post_msg.sql,e\6\e60bf131129f031e87b56c3ad0fc24c90b021ac9
 L
@@ -43,7 +37,5 @@ i
 9src/main/java/com/zkflzl/myinit/config/Knife4jConfig.java,6\2\628aaee42dac6c4285a9cb6eea237befefc81e95
 v
 Fsrc/main/java/com/zkflzl/myinit/model/dto/post/PostSelfGetRequest.java,8\4\849b7b7df0305a763746fbf403d4fb3b90d43972
-f
-6src/main/java/com/zkflzl/myinit/model/entity/User.java,e\e\ee50f8d9590a05d18a20aa0aefcad585ad77787a
 i
 9src/main/java/com/zkflzl/myinit/annotation/AuthCheck.java,c\5\c5c585c05b84bce6cecc3bb61496d9b71603366f

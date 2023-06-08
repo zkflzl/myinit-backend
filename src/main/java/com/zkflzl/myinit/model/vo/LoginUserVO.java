@@ -14,39 +14,35 @@ import java.util.Date;
 public class LoginUserVO implements Serializable {
 
     /**
-     * 用户 id
-     */
-    private Long id;
-
-    /**
-     * 用户昵称
+     * 昵称
      */
     private String userName;
 
     /**
-     * 用户头像
+     * 账户
      */
-    private String userAvatar;
+    private String account;
 
     /**
-     * 用户简介
+     * 头像
      */
-    private String userProfile;
+    private String icon;
 
     /**
-     * 用户角色：user/admin/ban
+     * 简介
+     */
+    private String introduction;
+
+    /**
+     * 权限
      */
     private String userRole;
 
     /**
-     * 创建时间
+     * 性别
      */
-    private Date createTime;
+    private String gender;
 
-    /**
-     * 更新时间
-     */
-    private Date updateTime;
 
     private static final long serialVersionUID = 1L;
 }

@@ -82,11 +82,11 @@
             <artifactId>hutool-all</artifactId>
             <version>5.7.17</version>
         </dependency>
-        <!--redisson-->
+        <!-- https://github.com/redisson/redisson#quick-start -->
         <dependency>
             <groupId>org.redisson</groupId>
             <artifactId>redisson</artifactId>
-            <version>3.13.6</version>
+            <version>3.21.3</version>
         </dependency>
         <dependency>
             <groupId>org.aspectj</groupId>

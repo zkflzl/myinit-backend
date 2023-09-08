@@ -5,7 +5,7 @@ import com.zkflzl.myinit.common.ErrorCode;
 /**
  * 抛异常工具类
  *
- * @author <a href="https://github.com/zkflzl">程序员zk</a>
+ * @author <a href="https://gitee.com/zkflzl">zkflzl</a>
  */
 public class ThrowUtils {
 

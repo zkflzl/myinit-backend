@@ -3,7 +3,7 @@ package com.zkflzl.myinit.constant;
 /**
  * 用户常量
  *
- * @author <a href="https://github.com/zkflzl">程序员zk</a>
+ * @author <a href="https://gitee.com/zkflzl">zkflzl</a>
  */
 public interface UserConstant {
 

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  *
- * @author <a href="https://github.com/zkflzl">程序员zk</a>
+ * @author <a href="https://gitee.com/zkflzl">zkflzl</a>
  */
 public interface PostService extends IService<Post> {
     BaseResponse<Long> addPost(PostAddRequest postAddRequest, HttpServletRequest request);

@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * 创建请求
  *
- * @author <a href="https://github.com/zkflzl">程序员zk</a>
+ * @author <a href="https://gitee.com/zkflzl">zkflzl</a>
  */
 @Data
 public class PostAddRequest implements Serializable {

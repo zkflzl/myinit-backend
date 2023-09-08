@@ -8,7 +8,7 @@ import com.zkflzl.myinit.model.entity.PostMsg;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * @author <a href="https://github.com/zkflzl">程序员zk</a>
+ * @author <a href="https://gitee.com/zkflzl">zkflzl</a>
  */
 public interface PostMsgService extends IService<PostMsg> {
 

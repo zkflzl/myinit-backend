@@ -3,12 +3,11 @@ package com.zkflzl.myinit.model.vo;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * 已登录用户视图（脱敏）
  *
- * @author <a href="https://github.com/zkflzl">程序员zk</a>
+ * @author <a href="https://gitee.com/zkflzl">zkflzl</a>
  **/
 @Data
 public class LoginUserVO implements Serializable {
@@ -30,7 +29,7 @@ public class LoginUserVO implements Serializable {
     /**
      * 头像
      */
-    private String icon;
+    private String userAvatar;
 
     /**
      * 简介

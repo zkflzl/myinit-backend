@@ -1,7 +1,10 @@
 package com.zkflzl.myinit.service;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.zkflzl.myinit.common.BaseResponse;
+import com.zkflzl.myinit.model.dto.user.UserListRequest;
 import com.zkflzl.myinit.model.entity.User;
 import com.zkflzl.myinit.model.vo.LoginUserVO;
 
@@ -51,4 +54,11 @@ public interface UserService extends IService<User> {
     boolean isAdmin(HttpServletRequest request);
 
     BaseResponse<Object> userLogout(HttpServletRequest request);
+
+    /**
+     * 设置查询参数
+     * @param userListRequest
+     * @return
+     */
+    QueryWrapper<User> getQueryWrapper(UserListRequest userListRequest);
 }

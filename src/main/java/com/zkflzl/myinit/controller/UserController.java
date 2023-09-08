@@ -1,11 +1,15 @@
 package com.zkflzl.myinit.controller;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.zkflzl.myinit.annotation.AuthCheck;
 import com.zkflzl.myinit.annotation.MyLog;
 import com.zkflzl.myinit.common.BaseResponse;
 import com.zkflzl.myinit.common.ErrorCode;
 import com.zkflzl.myinit.common.ResultUtils;
+import com.zkflzl.myinit.constant.UserConstant;
 import com.zkflzl.myinit.exception.BusinessException;
 import com.zkflzl.myinit.exception.ThrowUtils;
+import com.zkflzl.myinit.model.dto.user.UserListRequest;
 import com.zkflzl.myinit.model.dto.user.UserLoginRequest;
 import com.zkflzl.myinit.model.dto.user.UserRegisterRequest;
 import com.zkflzl.myinit.model.entity.User;
@@ -14,6 +18,7 @@ import com.zkflzl.myinit.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import net.bytebuddy.implementation.bytecode.Throw;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +27,6 @@ import javax.servlet.http.HttpServletRequest;
 
 @Slf4j
 @RestController
-@Api(tags = "用户管理")
 @RequestMapping("/user")
 public class UserController {
 
@@ -35,7 +39,6 @@ public class UserController {
      * @param userRegisterRequest 用户注册请求
      * @return {@link BaseResponse}<{@link Long}>
      */
-    @ApiOperation("注册")
     @PostMapping("/register")
     public BaseResponse<Long> userRegister(@RequestBody UserRegisterRequest userRegisterRequest) {
         if (userRegisterRequest == null) {
@@ -59,11 +62,10 @@ public class UserController {
      * @return {@link BaseResponse}<{@link LoginUserVO}>
      */
     @MyLog
-    @ApiOperation("登录")
     @PostMapping("/login")
     public BaseResponse<LoginUserVO> userLogin(@RequestBody UserLoginRequest userLoginRequest, HttpServletRequest request) {
 
-        ThrowUtils.throwIf(userLoginRequest == null,ErrorCode.PARAMS_ERROR);
+        ThrowUtils.throwIf(userLoginRequest == null, ErrorCode.PARAMS_ERROR);
 
         String phone = userLoginRequest.getPhone();
         String userPassword = userLoginRequest.getUserPassword();
@@ -80,13 +82,12 @@ public class UserController {
      * @param request 请求
      * @return {@link BaseResponse}<{@link Object}>
      */
-    @ApiOperation("获取当前登录用户消息")
     @GetMapping("/current")
     public BaseResponse<Object> getLoginUser(HttpServletRequest request) {
         User user = userService.getLoginUser(request);
 
-        if(user == null) {
-            return ResultUtils.error(ErrorCode.NOT_LOGIN_ERROR,"用户未登录");
+        if (user == null) {
+            return ResultUtils.error(ErrorCode.NOT_LOGIN_ERROR, "用户未登录");
         }
 
         return ResultUtils.success(userService.getLoginUserVO(user));
@@ -98,10 +99,29 @@ public class UserController {
      * @param request 请求
      * @return {@link BaseResponse}<{@link Object}>
      */
-    @ApiOperation("退出登录")
     @GetMapping("/logout")
     public BaseResponse<Object> userLogout(HttpServletRequest request) {
         return userService.userLogout(request);
+    }
+
+    /**
+     * 分页获取用户列表（仅限管理员）
+     * @param userListRequest
+     * @param request
+     * @return
+     */
+    @MyLog
+    @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
+    @PostMapping("/list/page")
+    public BaseResponse<Page<User>> userListByPage(@RequestBody UserListRequest userListRequest, HttpServletRequest request) {
+        long current = userListRequest.getCurrent();
+        long pageSize = userListRequest.getPageSize();
+
+        ThrowUtils.throwIf(current<0,ErrorCode.PARAMS_ERROR);
+
+        Page<User> userPage = userService.page(new Page<>(current, pageSize),
+                userService.getQueryWrapper(userListRequest));
+        return ResultUtils.success(userPage);
     }
 }
 

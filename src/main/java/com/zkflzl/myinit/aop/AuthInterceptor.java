@@ -2,7 +2,9 @@ package com.zkflzl.myinit.aop;
 
 import com.zkflzl.myinit.annotation.AuthCheck;
 import com.zkflzl.myinit.common.ErrorCode;
+import com.zkflzl.myinit.common.ResultUtils;
 import com.zkflzl.myinit.exception.BusinessException;
+import com.zkflzl.myinit.exception.ThrowUtils;
 import com.zkflzl.myinit.model.entity.User;
 import com.zkflzl.myinit.model.enums.UserRoleEnum;
 import com.zkflzl.myinit.service.UserService;
@@ -21,7 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * 权限校验 AOP
  *
- * @author <a href="https://github.com/zkflzl">程序员zk</a>
+ * @author <a href="https://gitee.com/zkflzl">zkflzl</a>
  */
 @Aspect
 @Component
@@ -45,6 +47,11 @@ public class AuthInterceptor {
         HttpServletRequest request = ((ServletRequestAttributes) requestAttributes).getRequest();
         // 当前登录用户
         User loginUser = userService.getLoginUser(request);
+
+        if(loginUser == null) {
+            return ResultUtils.error(ErrorCode.NOT_LOGIN_ERROR,"未登录");
+        }
+
         // 必须有该权限才通过
         if (StringUtils.isNotBlank(mustRole)) {
             UserRoleEnum mustUserRoleEnum = UserRoleEnum.getEnumByValue(mustRole);

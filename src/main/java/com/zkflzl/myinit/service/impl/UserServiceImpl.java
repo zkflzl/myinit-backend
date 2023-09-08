@@ -5,14 +5,16 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zkflzl.myinit.common.BaseResponse;
 import com.zkflzl.myinit.common.ErrorCode;
 import com.zkflzl.myinit.common.ResultUtils;
+import com.zkflzl.myinit.constant.CommonConstant;
 import com.zkflzl.myinit.exception.BusinessException;
-import com.zkflzl.myinit.exception.ThrowUtils;
 import com.zkflzl.myinit.mapper.UserMapper;
+import com.zkflzl.myinit.model.dto.user.UserListRequest;
 import com.zkflzl.myinit.model.entity.User;
 import com.zkflzl.myinit.model.enums.UserRoleEnum;
 import com.zkflzl.myinit.model.vo.LoginUserVO;
 import com.zkflzl.myinit.service.UserService;
 import com.zkflzl.myinit.utils.RegexUtils;
+import com.zkflzl.myinit.utils.SqlUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
@@ -25,7 +27,7 @@ import javax.servlet.http.HttpServletRequest;
 import static com.zkflzl.myinit.constant.UserConstant.USER_LOGIN_STATE;
 
 /**
- * @author <a href="https://github.com/zkflzl">程序员zk</a>
+ * @author <a href="https://gitee.com/zkflzl">zkflzl</a>
  */
 @Service
 @Slf4j
@@ -154,6 +156,28 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         // 移除登录态
         request.getSession().removeAttribute(USER_LOGIN_STATE);
         return ResultUtils.success(true);
+    }
+
+    @Override
+    public QueryWrapper<User> getQueryWrapper(UserListRequest userListRequest) {
+        if (userListRequest == null) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR, "请求参数为空");
+        }
+        String userRole = userListRequest.getUserRole();
+        String userName = userListRequest.getUserName();
+        String phone = userListRequest.getPhone();
+        String gender = userListRequest.getGender();
+        String sortField = userListRequest.getSortField();
+        String sortOrder = userListRequest.getSortOrder();
+
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq(StringUtils.isNotBlank(phone), "phone", phone);
+        queryWrapper.eq(StringUtils.isNotBlank(gender), "gender", gender);
+        queryWrapper.eq(StringUtils.isNotBlank(userRole), "userRole", userRole);
+        queryWrapper.like(StringUtils.isNotBlank(userName), "userName", userName);
+        queryWrapper.orderBy(SqlUtils.validSortField(sortField), sortOrder.equals(CommonConstant.SORT_ORDER_ASC),
+                sortField);
+        return queryWrapper;
     }
 
 }

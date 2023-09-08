@@ -13,7 +13,7 @@ import java.util.Date;
  * 帖子点赞、收藏
  * @TableName post_msg
  *
- * @author <a href="https://github.com/zkflzl">程序员zk</a>
+ * @author <a href="https://gitee.com/zkflzl">zkflzl</a>
  */
 @TableName(value ="post_msg")
 @Data

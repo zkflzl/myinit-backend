@@ -7,21 +7,24 @@ import com.zkflzl.myinit.model.dto.post.PostMsgUpdateRequest;
 import com.zkflzl.myinit.service.PostMsgService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.*;
 
 
 
 /**
  * 帖子接口
  *
- * @author <a href="https://github.com/zkflzl">程序员zk</a>
+ * @author <a href="https://gitee.com/zkflzl">zkflzl</a>
  */
 
 @Slf4j
-@Api(tags = "帖子信息管理")
 @RestController
 @RequestMapping("/post/msg")
 public class PostMsgController {
@@ -36,7 +39,6 @@ public class PostMsgController {
      * @param request 请求
      * @return {@link BaseResponse}<{@link Long}>
      */
-    @ApiOperation("帖子点赞/取消点赞")
     @PostMapping("/update/thumb")
     public BaseResponse<Long> updateThumb(@RequestParam Long postId, HttpServletRequest request) {
         if (postId <= 0) {
@@ -57,7 +59,6 @@ public class PostMsgController {
      * @param request 请求
      * @return {@link BaseResponse}<{@link Long}>
      */
-    @ApiOperation("帖子收藏/取消收藏")
     @PostMapping("/update/favour")
     public BaseResponse<Long> updateFavour(@RequestParam Long postId, HttpServletRequest request) {
         if (postId <= 0) {
@@ -78,7 +79,6 @@ public class PostMsgController {
      * @param request 请求
      * @return {@link BaseResponse}<{@link Long}>
      */
-    @ApiOperation("帖子转发")
     @PostMapping("/add/forward")
     public BaseResponse<Long> addForward(@RequestParam Long postId, HttpServletRequest request) {
         if (postId <= 0) {

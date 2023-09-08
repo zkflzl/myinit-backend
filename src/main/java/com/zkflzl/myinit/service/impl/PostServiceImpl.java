@@ -29,7 +29,7 @@ import java.util.Objects;
 
 
 /**
- * @author <a href="https://github.com/zkflzl">程序员zk</a>
+ * @author <a href="https://gitee.com/zkflzl">zkflzl</a>
  */
 @Service
 public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements PostService {

@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
 /**
- * @author <a href="https://github.com/zkflzl">程序员zk</a>
+ * @author <a href="https://gitee.com/zkflzl">zkflzl</a>
  */
 @Service
 public class PostMsgServiceImpl extends ServiceImpl<PostMsgMapper, PostMsg> implements PostMsgService {

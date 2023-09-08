@@ -8,7 +8,7 @@ import java.io.Serializable;
  * 通用返回类
  *
  * @param <T>
- * @author <a href="https://github.com/zkflzl">程序员zk</a>
+ * @author <a href="https://gitee.com/zkflzl">zkflzl</a>
  */
 @Data
 public class BaseResponse<T> implements Serializable {
